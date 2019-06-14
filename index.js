@@ -1,30 +1,4 @@
-const express = require('express')
-const helmet = require('helmet')
-const cors = require('cors')
-const bcrypt = require('bcryptjs')
-const knex = require('knex')
-
-const server = express()
-
-server.use(helmet())
-server.use(express.json())
-server.use(cors())
-
-const config ={
-    client:"sqlite3",
-    connection: {
-        filename:'./data/authiii.db3'
-    },
-    useNullasDefault: true
-};
-
-const db = knex(config)
-
-
-
-
-
-
+const server = require('./api/server.js')
 
 //~~~~~~~~~~~~~~~~~~~~~~~~SERVER~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const port = process.env.PORT || 6492

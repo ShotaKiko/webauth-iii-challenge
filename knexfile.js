@@ -6,7 +6,9 @@ module.exports = {
     client: 'sqlite3',
     connection: {
       filename: './data/authiii.db3'
-    }
+    },
+    useNullasDefault: true,
+    debug: true
   },
 
   // staging: {
