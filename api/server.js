@@ -1,20 +1,18 @@
-const express = require('express')
-const helmet = require('helmet')
-const cors = require('cors')
-// const bcrypt = require('bcryptjs')
-// const knex = require('knex')
+const express = require('express');
 
-const server = express()
+const middleware = require('./middleware.js');
+const authRouter = require('../auth/authRouter.js');
+// const usersRouter = require('../users/users-router.js');
 
-server.use(helmet())
-server.use(express.json())
-server.use(cors())
+const server = express();
+
+middleware(server);
+
+server.use('/api/auth', authRouter);
+// server.use('/api/users', usersRouter);
 
 server.get('/', (req, res) => {
-    res.send("ITs AliVEEEEE!!!!")
-})
+  res.send("It's alive!");
+});
 
-// server.use('/api/auth', authRouter)
-// sever.use('/api/users', userRouter)
-
-module.exports = sever
+module.exports = server;
