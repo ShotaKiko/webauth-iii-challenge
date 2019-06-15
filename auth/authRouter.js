@@ -20,7 +20,26 @@ router.post('/register', async(req, res) => {
     } catch(err){
         res.status(500).json({ message:"Error registering the new user."})
     }
+})
 
+router.post('/login', async (req, res) => {
+   let { username, password } = req.body 
+   try{
+        const verifiedUser = await UserFunctions.findBy({ username })
+        .first()
+        if( verifiedUser && bcrypt.compareSync(password, verifiedUser.password)) {
+            const token = tokenService.generateToken(verifiedUser)
+            res.status(200).json({
+                message:`Welcome ${verifiedUser.username}! Here is your token...`,
+                token,
+                roles: token.roles
+            })
+        } else {
+            res.status(401).json({ message:"Invalid credentials" })
+        }
+    } catch(err) {
+        res.status(500).json({ message:"Error logging in." })
+    }
 })
 
 module.exports = router
