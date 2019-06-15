@@ -31,7 +31,7 @@ router.post('/login', async (req, res) => {
             const token = tokenService.generateToken(verifiedUser)
             res.status(200).json({
                 message:`Welcome ${verifiedUser.username}! Here is your token...`,
-                token,
+                authToken: token
                 // roles: token.roles
             })
         } else {

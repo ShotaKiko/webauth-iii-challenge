@@ -8,13 +8,13 @@ module.exports = {
 
 function generateToken(user) {
   const payload = {
-    subject: user.id,
+    userId: user.id,
     username: user.username,
-    roles: ['Employee'],
+    // roles: ['Employee'],
   };
 
   const options = {
-    expiresIn: '20m',
+    expiresIn: '1h',
   };
 
   return jwt.sign(payload, secrets.jwtSecret, options);
