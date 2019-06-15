@@ -32,7 +32,7 @@ router.post('/login', async (req, res) => {
             res.status(200).json({
                 message:`Welcome ${verifiedUser.username}! Here is your token...`,
                 token,
-                roles: token.roles
+                // roles: token.roles
             })
         } else {
             res.status(401).json({ message:"Invalid credentials" })
